@@ -1,4 +1,18 @@
+.gitignore
+
+#Eclipse
+.project
+classpath
+.classpath
+.springBeans
+
+#IDEA
+*.iml
+.idea
+
+#Build
 *.class
+target
 
 # Package Files #
 *.jar
