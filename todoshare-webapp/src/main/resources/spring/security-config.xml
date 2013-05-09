@@ -2,8 +2,11 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="ua.com.mcgray.service" />
 
     <global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
     <!-- HTTP security configurations -->
@@ -13,10 +16,14 @@
         <!-- Configure these elements to secure URIs in your application -->
         <intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
     </http>
+
     <!-- Configure Authentication mechanism -->
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userService">
             <password-encoder ref="passwordEncoder"/>
         </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
 </beans:beans>
