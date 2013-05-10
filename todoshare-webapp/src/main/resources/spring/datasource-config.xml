@@ -44,6 +44,7 @@
         <property name="scripts">
             <array>
                 <value>classpath*:db/init-todoshare.sql</value>
+                <value>classpath*:db/populate-some-todos.sql</value>
             </array>
         </property>
     </bean>

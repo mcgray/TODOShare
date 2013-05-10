@@ -21,6 +21,8 @@
     <!-- import the dataSource definition -->
     <import resource="datasource-config.xml"/>
 
+    <import resource="security-config.xml"/>
+
     <context:component-scan
             base-package="ua.com.mcgray.service"/>
 
