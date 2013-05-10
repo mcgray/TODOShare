@@ -37,6 +37,11 @@
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="ua.com.mcgray.converter.StringToToDoFormConverter" />
+            </set>
+        </property>
         <property name="formatters">
             <set>
                 <!--<bean class="org.springframework.samples.petclinic.web.PetTypeFormatter"/>-->

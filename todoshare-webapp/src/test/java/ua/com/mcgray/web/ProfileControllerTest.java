@@ -30,6 +30,8 @@ public class ProfileControllerTest {
 
     }
 
+    //Ignored because of strange error probably caused by naming of the view (same as request mapping)
+    //TODO: Check if this a bug/known bug or incorrect test
     @Ignore
     @Test
     public void testShowProfile() throws Exception {

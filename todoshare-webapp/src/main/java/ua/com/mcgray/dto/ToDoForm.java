@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
+import ua.com.mcgray.domain.ToDo;
 
 /**
  * @author orezchykov
@@ -26,6 +27,19 @@ public class ToDoForm {
     private String title;
 
     private String note;
+
+    public ToDoForm() {
+
+    }
+
+    public ToDoForm(final ToDo toDo) {
+        this.id = toDo.getId();
+        this.listId = toDo.getList().getId();
+        this.done = toDo.isDone();
+        this.dueDate = toDo.getDueDate();
+        this.title = toDo.getTitle();
+        this.note = toDo.getNote();
+    }
 
     public Long getId() {
         return id;

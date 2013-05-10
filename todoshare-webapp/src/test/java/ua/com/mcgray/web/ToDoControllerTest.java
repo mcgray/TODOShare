@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import ua.com.mcgray.domain.ToDo;
+import ua.com.mcgray.dto.ToDoForm;
 import ua.com.mcgray.service.ToDoService;
 
 import static org.mockito.Mockito.verify;
@@ -48,10 +48,11 @@ public class ToDoControllerTest {
 
     @Test
     public void testToDoList() throws Exception {
-        when(toDoService.getToDos()).thenReturn(new ArrayList<ToDo>());
+        when(toDoService.getToDos()).thenReturn(new ArrayList<ToDoForm>());
         mockMvc.perform(get("/todo/list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("todo-list"));
         verify(toDoService).getToDos();
     }
+
 }

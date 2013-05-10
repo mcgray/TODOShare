@@ -1,6 +1,9 @@
 package ua.com.mcgray.web;
 
+import javax.annotation.Resource;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import ua.com.mcgray.domain.ToDo;
+import ua.com.mcgray.repository.ToDoRepository;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -27,6 +34,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // Enable if services is used instead of mocks
 // @Transactional
 public class ControllerTest {
+
+    @Resource
+    private ToDoRepository toDoRepository;
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -50,6 +60,17 @@ public class ControllerTest {
         mockMvc.perform(get("/profile"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profile"));
+
+    }
+
+    @Ignore
+    @Test
+    public void testToDoEdit() throws Exception {
+        when(toDoRepository.findOne(12L)).thenReturn(new ToDo());
+        mockMvc.perform(get("/todo/12"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("todo-edit"));
+        verify(toDoRepository).findOne(12L);
 
     }
 }

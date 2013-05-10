@@ -4,8 +4,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ua.com.mcgray.dto.ToDoForm;
 import ua.com.mcgray.service.ToDoService;
 
 /**
@@ -27,6 +30,11 @@ public class ToDoController {
     public String list(Model model) {
         model.addAttribute("todoList", toDoService.getToDos());
         return "todo-list";
+    }
+
+    @RequestMapping(value = "todo/{toDoId}", method = RequestMethod.GET, produces = "text/html")
+    public String edit(@PathVariable("toDoId") @ModelAttribute("todo") ToDoForm toDoForm) {
+        return "todo-edit";
     }
 
 
