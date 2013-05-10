@@ -14,17 +14,20 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="security-config.xml"/>
-
     <import resource="mvc-view-config.xml"/>
 
     <!--
         - POJOs labeled with the @Controller and @Service annotations are auto-detected.
     -->
-    <context:component-scan
-            base-package="ua.com.mcgray.web"/>
+    <context:component-scan base-package="ua.com.mcgray.web">
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
+    </context:component-scan>
 
-    <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
+    <!-- Allows for mapping the DispatcherServlet to "/" by forwarding static
+		resource requests to the container's default Servlet -->
+    <mvc:default-servlet-handler />
+
+    <mvc:annotation-driven conversion-service="conversionService"/>
 
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be refered to inside JSP files
         (see header.jsp for more details) -->
@@ -33,15 +36,15 @@
     <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
-    <mvc:view-controller path="/" view-name="welcome" />
-
-    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
-        <!--<property name="formatters">-->
-            <!--<set>-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
                 <!--<bean class="org.springframework.samples.petclinic.web.PetTypeFormatter"/>-->
-            <!--</set>-->
-        <!--</property>-->
-    <!--</bean>-->
+            </set>
+        </property>
+    </bean>
+
+    <mvc:view-controller path="/login" />
 
     <!--
         - Message source for this context, loaded from localized "messages_xx" files.

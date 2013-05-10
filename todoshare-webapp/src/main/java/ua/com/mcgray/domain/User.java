@@ -27,6 +27,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "user")
 public class User extends BaseEntity implements UserDetails {
 
+    private static final long serialVersionUID = 4752412191180798770L;
+
     @NotNull
     @Email
     @Column(name = "email_address")

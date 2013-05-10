@@ -15,6 +15,7 @@
     </appender>
 
     <logger name="ua.com.mcgray" level="debug"/>
+    <logger name="org.apache.catalina.core.ContainerBase" level = "info" />
 
     <root level="info">
         <appender-ref ref="console"/>

@@ -10,6 +10,8 @@
          http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+
     <bean id="templateResolver"
           class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/thymeleaf/" />
@@ -50,14 +52,6 @@
                     <!--                                  owners/createOrUpdateOwnerForm,pets/createOrUpdatePetForm, -->
                     <!--                                  pets/createOrUpdateVisitForm"/>    -->
                 </bean>
-
-                <!-- Default viewClass: JSTL view (JSP with html output) -->
-                <!--                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
-                <!--                     Example: a logical view name of 'vets' is mapped to '/WEB-INF/jsp/vets.jsp' -->
-                <!--                     <property name="prefix" value="/WEB-INF/jsp/"/> -->
-                <!--                     <property name="suffix" value=".jsp"/> -->
-                <!--                     <property name="order" value="3"/> -->
-                <!--                 </bean> -->
 
             </list>
         </property>

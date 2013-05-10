@@ -14,7 +14,11 @@
         <form-login login-processing-url="/resources/j_spring_security_check" login-page="/login" authentication-failure-url="/login?login_error=t" />
         <logout logout-url="/resources/j_spring_security_logout" />
         <!-- Configure these elements to secure URIs in your application -->
-        <intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/login/**" access="permitAll" />
+        <intercept-url pattern="/resources/**" access="permitAll" />
+        <intercept-url pattern="/webjars/**" access="permitAll" />
+        <intercept-url pattern="/" access="isAuthenticated()" />
+        <intercept-url pattern="/**" access="isAuthenticated()" />
     </http>
 
     <!-- Configure Authentication mechanism -->

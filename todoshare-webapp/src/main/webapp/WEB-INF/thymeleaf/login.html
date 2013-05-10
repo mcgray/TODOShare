@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-transitional-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../../resources/css/signin.css"
+          th:href="@{/resources/css/signin.css}" rel="stylesheet"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+            th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+            th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
+
+    <script src="../../resources/js/signin.js"
+            th:src="@{/resources/js/signin.js}"></script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
+          th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}" rel="stylesheet"></link>
+</head>
+
+<body>
+<div class="container">
+
+    <div th:include="fragments/bodyHeader" th:remove="tag">
+    </div>
+
+    <form name="f" action="resources/j_spring_security_check" method="post">
+
+        <h1>Sign In</h1>
+
+        <div class="login-fields">
+
+            <p>Sign in using your registered account:</p>
+
+            <div class="field">
+                <label for="j_username">Username:</label>
+                <input type="text" id="j_username" name="j_username" value="" placeholder="Username"
+                       class="login username-field"/>
+            </div>
+            <!-- /field -->
+            <div class="field">
+                <label for="j_password">Password:</label>
+                <input type="password" id="j_password" name="j_password" value="" placeholder="Password"
+                       class="login password-field"/>
+            </div>
+            <!-- /password -->
+
+        </div>
+        <!-- /login-fields -->
+
+        <div class="login-actions">
+
+
+            <button type="reset" class="button btn btn-large">Reset</button>
+
+            <button type="submit" class="button btn btn-warning btn-large">Sign In</button>
+
+        </div>
+
+
+    </form>
+
+    <table th:substituteby="fragments/footer :: footer" class="footer">
+        <tr>
+            <td></td>
+            <td align="right">
+                <img src="../../resources/images/springsource-logo.png"
+                     th:src="@{/resources/images/springsource-logo.png}" alt="Sponsored by SpringSource"/>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+
+</html>
