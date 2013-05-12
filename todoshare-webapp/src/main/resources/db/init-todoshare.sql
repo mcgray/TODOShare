@@ -1,8 +1,8 @@
-insert into todoshare_account (id, nickname, first_name, last_name) values (1, 'orezchykov', 'Olesksiy', 'Rezchykov');
-insert into todoshare_account (id, nickname, first_name, last_name) values (2, 'mcgray', 'Alex', 'McGray');
+insert into todoshare_account (id, nickname, first_name, last_name) values (2, 'orezchykov', 'Olesksiy', 'Rezchykov');
+insert into todoshare_account (id, nickname, first_name, last_name) values (1, 'mcgray', 'Alex', 'McGray');
 
-insert into user (id, email_address, password, todoshare_account_id, active) values (1, 'oleksiy.rezchykov@gmail.com', '$2a$10$6.p2FiKeFjJMLpGV3VhDquo1TnN0nOVGklYeUbWV1J/qHkJs3qFrS', 1, 1);
-insert into user (id, email_address, password, todoshare_account_id, active) values (2, 'alex.mcgray@gmail.com', '$2a$10$CMfHaHsCOvXgnCkPM4gntu8IKBA3hkvaJjXYdfgZzqBoZJEh4jWw2', 2, 1);
+insert into user (id, email_address, password, todoshare_account_id, active) values (1, 'oleksiy.rezchykov@gmail.com', '$2a$10$6.p2FiKeFjJMLpGV3VhDquo1TnN0nOVGklYeUbWV1J/qHkJs3qFrS', 2, 1);
+insert into user (id, email_address, password, todoshare_account_id, active) values (2, 'alex.mcgray@gmail.com', '$2a$10$CMfHaHsCOvXgnCkPM4gntu8IKBA3hkvaJjXYdfgZzqBoZJEh4jWw2', 1  , 1);
 
 insert into user_authorities (user, authorities) values (1, 'ROLE_ADMIN');
 insert into user_authorities (user, authorities) values (2, 'ROLE_USER');

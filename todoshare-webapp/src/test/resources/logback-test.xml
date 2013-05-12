@@ -16,7 +16,7 @@
 
     <logger name="ua.com.mcgray" level="info"/>
     <logger name="org.springframework" level="info"/>
-    <!--<logger name="org.springframework.test.web" level="trace"/>-->
+    <logger name="org.springframework.test.web" level="trace"/>
 
     <root level="warn">
         <appender-ref ref="console"/>

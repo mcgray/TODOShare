@@ -37,7 +37,7 @@ public class User extends BaseEntity implements UserDetails {
     @NotNull
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "todoshare_account_id")
     private ToDoShareAccount toDoShareAccount;
 

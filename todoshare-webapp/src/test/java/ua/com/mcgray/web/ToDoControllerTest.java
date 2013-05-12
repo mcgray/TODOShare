@@ -54,5 +54,4 @@ public class ToDoControllerTest {
                 .andExpect(view().name("todo-list"));
         verify(toDoService).getToDos();
     }
-
 }

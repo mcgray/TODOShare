@@ -63,11 +63,12 @@ public class ControllerTest {
 
     }
 
+    //TODO: Fix this test
     @Ignore
     @Test
     public void testToDoEdit() throws Exception {
         when(toDoRepository.findOne(12L)).thenReturn(new ToDo());
-        mockMvc.perform(get("/todo/12"))
+        mockMvc.perform(get("/todo/12").param("id","12").param("title", "Some title"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("todo-edit"));
         verify(toDoRepository).findOne(12L);

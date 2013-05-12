@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-transitional-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../../resources/css/datepicker.css"
+          th:href="@{/resources/css/datepicker.css}" rel="stylesheet"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+            th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+            th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
+
+    <script src="https://raw.github.com/eternicode/bootstrap-datepicker/master/js/bootstrap-datepicker.js"
+            th:src="@{/webjars/bootstrap-datepicker/1.0.1/js/bootstrap-datepicker.js}"></script>
+
+    <script src="../../resources/js/signin.js"
+            th:src="@{/resources/js/signin.js}"></script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
+          th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}" rel="stylesheet"></link>
+</head>
+
+<body>
+<div class="container">
+
+    <div th:include="fragments/bodyHeader" th:remove="tag">
+    </div>
+
+    <div>
+        <h5>ToDo Edit</h5>
+        <form th:object="${toDoForm}" method="post" th:action="'#'" action="#"
+              th:method="${toDoForm['new']} ? 'post' : 'put'" class="form-horizontal">
+            <input type="hidden" th:field="*{id}" />
+            <div class="control-group" th:classappend="${#fields.hasErrors('title')} ? 'error' : ''">
+                <label class="control-label" th:for="*{title}" th:text="#{todo.title}">Title</label>
+                <div class="controls">
+                    <input type="text" th:field="*{title}" />
+                    <span class="help-inline" th:errors="*{title}">[error]</span>
+                 </div>
+            </div>
+            <div class="control-group" th:classappend="${#fields.hasErrors('note')} ? 'error' : ''">
+                <label class="control-label" th:for="*{note}" th:text="#{todo.note}">note</label>
+                <div class="controls">
+                    <textarea  th:field="*{note}" cols="40" rows="3"></textarea>
+                    <span class="help-inline" th:errors="*{note}">[error]</span>
+                 </div>
+            </div>
+            <div class="control-group" th:classappend="${#fields.hasErrors('dueDate')} ? 'error' : ''">
+                <label class="control-label" th:for="*{dueDate}" th:text="#{todo.dueDate}">dueDate</label>
+                <div class="controls">
+                    <input id="dueDate" type="text"  th:field="*{dueDate}" data-date-format="dd-mm-yyyy"/>
+                    <span class="help-inline" th:errors="*{dueDate}">[error]</span>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary btn-large" th:if="${toDoForm['new']}" type="submit">Save</button>
+                <button class="btn btn-primary btn-large" th:unless="${toDoForm['new']}" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        //<![CDATA[
+        var now = new Date();
+        var dueDate = $('#dueDate').datepicker(
+                {
+            format: 'dd-mm-yyyy',
+            startDate: now
+        });
+        //]]>
+    </script>
+
+    <table th:substituteby="fragments/footer :: footer" class="footer">
+        <tr>
+            <td></td>
+            <td align="right">
+                <img src="../../resources/images/springsource-logo.png"
+                     th:src="@{/resources/images/springsource-logo.png}" alt="Sponsored by SpringSource"/>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+
+</html>

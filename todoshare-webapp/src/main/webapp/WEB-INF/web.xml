@@ -79,7 +79,7 @@ see here: http://static.springsource.org/spring/docs/current/spring-framework-re
     </filter>
     <filter-mapping>
         <filter-name>httpMethodFilter</filter-name>
-        <servlet-name>todoshare</servlet-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <!--Spring Security filter-->

@@ -15,11 +15,13 @@ public class ToDoForm {
 
     private Long id;
 
+    private Long ownerId;
+
     private Long listId;
 
     private boolean done;
 
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     private DateTime dueDate;
 
     @NotNull
@@ -34,11 +36,16 @@ public class ToDoForm {
 
     public ToDoForm(final ToDo toDo) {
         this.id = toDo.getId();
+        this.ownerId = toDo.getCreatedBy().getId();
         this.listId = toDo.getList().getId();
         this.done = toDo.isDone();
         this.dueDate = toDo.getDueDate();
         this.title = toDo.getTitle();
         this.note = toDo.getNote();
+    }
+
+    public boolean isNew() {
+        return id == null;
     }
 
     public Long getId() {
@@ -87,5 +94,13 @@ public class ToDoForm {
 
     public void setNote(final String note) {
         this.note = note;
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(final Long ownerId) {
+        this.ownerId = ownerId;
     }
 }

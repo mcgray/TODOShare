@@ -27,7 +27,7 @@ import static org.junit.Assert.assertThat;
 @Transactional
 public class ToDoSharePersistenceTest {
 
-    public static final long ADMIN_USER_ID = 1l;
+    public static final long ADMIN_USER_ID = 2l;
     public static final String ADMIN_SHARED_LIST_TITLE = "Admin shared list";
 
     @Autowired
