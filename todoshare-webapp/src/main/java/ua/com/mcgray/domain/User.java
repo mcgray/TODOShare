@@ -14,7 +14,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.core.style.ToStringCreator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -114,5 +117,45 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setActive(final boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .appendSuper(super.hashCode())
+                .append(this.emailAddress)
+                .append(this.password)
+                .append(this.toDoShareAccount)
+                .append(this.active)
+                .append(this.authorities).toHashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        return new EqualsBuilder()
+                .appendSuper(super.equals(obj))
+                .append(this.emailAddress, other.emailAddress)
+                .append(this.password, other.password)
+                .append(this.toDoShareAccount, other.toDoShareAccount)
+                .append(this.active, other.active)
+                .append(this.authorities, other.authorities).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+                .append("id", this.getId())
+                .append("emailAddress", this.emailAddress)
+                .append("password", this.password)
+                .append("toDoShareAccount", this.toDoShareAccount)
+                .append("active", this.active)
+                .append("authorities", this.authorities).toString();
     }
 }

@@ -9,7 +9,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.core.style.ToStringCreator;
 
 /**
  * @author orezchykov
@@ -83,5 +86,51 @@ public class ToDoShareAccount extends BaseEntity {
 
     public void setToDoLists(final Set<ToDoList> toDoLists) {
         this.toDoLists = toDoLists;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .appendSuper(super.hashCode())
+                .append(this.nickname)
+                .append(this.firstName)
+                .append(this.lastName)
+                .append(this.user)
+                .append(this.toDos)
+                .append(this.toDoLists)
+                .append(this.lists).toHashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ToDoShareAccount other = (ToDoShareAccount) obj;
+        return new EqualsBuilder()
+                .appendSuper(super.equals(obj))
+                .append(this.nickname, other.nickname)
+                .append(this.firstName, other.firstName)
+                .append(this.lastName, other.lastName)
+                .append(this.user, other.user)
+                .append(this.toDos, other.toDos)
+                .append(this.toDoLists, other.toDoLists)
+                .append(this.lists, other.lists).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+                .append("id", this.getId())
+                .append("nickname",  this.nickname)
+                .append("firstName",  this.firstName)
+                .append("lastName",  this.lastName)
+                .append("user",  this.user)
+                .append("toDos",  this.toDos)
+                .append("toDoLists",  this.toDoLists)
+                .append("lists",  this.lists).toString();
     }
 }

@@ -2,8 +2,11 @@ package ua.com.mcgray.dto;
 
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
+import org.springframework.core.style.ToStringCreator;
 import org.springframework.format.annotation.DateTimeFormat;
 import ua.com.mcgray.domain.ToDo;
 
@@ -102,5 +105,48 @@ public class ToDoForm {
 
     public void setOwnerId(final Long ownerId) {
         this.ownerId = ownerId;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(this.id)
+                .append(this.ownerId)
+                .append(this.listId)
+                .append(this.done)
+                .append(this.dueDate)
+                .append(this.title)
+                .append(this.note).toHashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ToDoForm other = (ToDoForm) obj;
+        return new EqualsBuilder()
+                .append(this.id, other.id)
+                .append(this.ownerId, other.ownerId)
+                .append(this.listId, other.listId)
+                .append(this.done, other.done)
+                .append(this.dueDate, other.dueDate)
+                .append(this.title, other.title)
+                .append(this.note, other.note).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+                .append("id", this.getId())
+                .append("ownerId", this.ownerId)
+                .append("listId", this.listId)
+                .append("done", this.done)
+                .append("dueDate", this.dueDate)
+                .append("title", this.title)
+                .append("note", this.note).toString();
     }
 }

@@ -11,7 +11,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.core.style.ToStringCreator;
 
 /**
  * @author orezchykov
@@ -68,5 +71,42 @@ public class ToDoList extends BaseEntity {
 
     public void setList(final List<ToDo> list) {
         this.list = list;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .appendSuper(super.hashCode())
+                .append(this.title)
+                .append(this.owner)
+                .append(this.members)
+                .append(this.list).toHashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ToDoList other = (ToDoList) obj;
+        return new EqualsBuilder()
+                .appendSuper(super.equals(obj))
+                .append(this.title, other.title)
+                .append(this.owner, other.owner)
+                .append(this.members, other.members)
+                .append(this.list, other.list).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+                .append("id", this.getId())
+                .append("title", this.title)
+                .append("owner", this.owner)
+                .append("members", this.members)
+                .append("list", this.list).toString();
     }
 }

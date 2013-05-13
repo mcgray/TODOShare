@@ -7,9 +7,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
+import org.springframework.core.style.ToStringCreator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -90,4 +93,47 @@ public class ToDo extends BaseEntity {
     public void setNote(final String note) {
         this.note = note;
     }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .appendSuper(super.hashCode())
+                .append(this.createdBy)
+                .append(this.list)
+                .append(this.done)
+                .append(this.dueDate)
+                .append(this.title)
+                .append(this.note).toHashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ToDo other = (ToDo) obj;
+        return new EqualsBuilder().appendSuper(super.equals(obj))
+                .append(this.createdBy, other.createdBy)
+                .append(this.list, other.list)
+                .append(this.done, other.done)
+                .append(this.dueDate, other.dueDate)
+                .append(this.title, other.title)
+                .append(this.note, other.note).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+                .append("id", this.getId())
+                .append("createdBy", this.createdBy)
+                .append("list", this.list)
+                .append("done", this.done)
+                .append("dueDate", this.dueDate)
+                .append("title", this.title)
+                .append("note", this.note).toString();
+    }
+
 }
