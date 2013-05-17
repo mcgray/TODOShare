@@ -27,7 +27,11 @@
 		resource requests to the container's default Servlet -->
     <mvc:default-servlet-handler />
 
-    <mvc:annotation-driven conversion-service="conversionService"/>
+    <mvc:annotation-driven conversion-service="conversionService">
+        <!--<mvc:argument-resolvers>-->
+            <!--<bean></bean>-->
+        <!--</mvc:argument-resolvers>-->
+    </mvc:annotation-driven>
 
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be refered to inside JSP files
         (see header.jsp for more details) -->
@@ -69,5 +73,6 @@
         <property name="warnLogCategory" value="warn"/>
         <!-- needed otherwise exceptions won't be logged anywhere -->
     </bean>
+
 
 </beans>

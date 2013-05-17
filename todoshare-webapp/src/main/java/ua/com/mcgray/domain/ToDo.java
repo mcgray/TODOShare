@@ -98,8 +98,6 @@ public class ToDo extends BaseEntity {
     public int hashCode() {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
-                .append(this.createdBy)
-                .append(this.list)
                 .append(this.done)
                 .append(this.dueDate)
                 .append(this.title)
@@ -116,8 +114,6 @@ public class ToDo extends BaseEntity {
         }
         final ToDo other = (ToDo) obj;
         return new EqualsBuilder().appendSuper(super.equals(obj))
-                .append(this.createdBy, other.createdBy)
-                .append(this.list, other.list)
                 .append(this.done, other.done)
                 .append(this.dueDate, other.dueDate)
                 .append(this.title, other.title)
@@ -128,8 +124,6 @@ public class ToDo extends BaseEntity {
     public String toString() {
         return new ToStringCreator(this)
                 .append("id", this.getId())
-                .append("createdBy", this.createdBy)
-                .append("list", this.list)
                 .append("done", this.done)
                 .append("dueDate", this.dueDate)
                 .append("title", this.title)

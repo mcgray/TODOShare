@@ -3,24 +3,51 @@
       xmlns:th="http://www.thymeleaf.org/"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../../../resources/css/petclinic.css"
+          th:href="@{/resources/css/petclinic.css}" rel="stylesheet"/>
+
+    <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+             th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+            th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
+          th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}" rel="stylesheet"></link>
+
+</head>
+
 <body>
 
-Here to be placed:
-Logo?
-http://SpringByExample.com.ua link
-https://github.com/mcgray/TODOShare GitHub link
-https://twitter.com/ua_spring follow me
-Oleksiy Rezchykov oleksiy.rezchykov@gmail.com
-
-<table th:fragment="footer" class="footer">
-    <tr>
-        <td></td>
-        <td align="right">
-           <img src="../../../resources/images/springsource-logo.png"
-                th:src="@{/resources/images/springsource-logo.png}" alt="Sponsored by SpringSource" />
-        </td>
-    </tr>
-</table>
+<div th:fragment="footer" class="footer">
+    <ul class="inline">
+        <li>
+            <a href="https://twitter.com/ua_spring" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @ua_spring</a>
+            <script type="text/javascript">
+                    !function(d,s,id){
+                        var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                        if(!d.getElementById(id)){js=d.createElement(s);
+                            js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+            </script>
+        </li>
+        <li>
+            <iframe src="http://ghbtns.com/github-btn.html?user=mcgray&amp;repo=TODOShare&amp;type=watch&amp;count=true&amp;size=large"
+                    allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+        </li>
+        <li>
+            <a href="http://SpringByExample.com.ua" ><i class="icon-home"><!----></i>SpringByExample.com.ua</a>
+        </li>
+        <li>
+            <a href="maito:oleksiy.rezchykov@gmail.com" ><i class="icon-envelope"><!----></i>Oleksiy Rezchykov</a>
+        </li>
+    </ul>
+</div>
 
 
 </body>

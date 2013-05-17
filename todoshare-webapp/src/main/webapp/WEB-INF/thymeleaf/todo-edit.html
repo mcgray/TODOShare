@@ -5,32 +5,23 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title></title>
+    <title>@TODOShare: a Spring MVC/Spring data exmaple application</title>
 
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:include="fragments/headTag :: headTag"  th:remove="tag" type="text/javascript"></script>
+
     <link href="../../resources/css/datepicker.css"
-          th:href="@{/resources/css/datepicker.css}" rel="stylesheet"/>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
-            th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
-            th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
+    th:href="@{/resources/css/datepicker.css}" rel="stylesheet"/>
 
     <script src="https://raw.github.com/eternicode/bootstrap-datepicker/master/js/bootstrap-datepicker.js"
-            th:src="@{/webjars/bootstrap-datepicker/1.0.1/js/bootstrap-datepicker.js}"></script>
+    th:src="@{/webjars/bootstrap-datepicker/1.0.1/js/bootstrap-datepicker.js}"></script>
 
-    <script src="../../resources/js/signin.js"
-            th:src="@{/resources/js/signin.js}"></script>
 
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
-          th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}" rel="stylesheet"></link>
 </head>
 
 <body>
 <div class="container">
 
-    <div th:include="fragments/bodyHeader" th:remove="tag">
+    <div th:substituteby="fragments/bodyHeader :: bodyHeader" th:remove="tag">
     </div>
 
     <div>
@@ -77,15 +68,9 @@
         //]]>
     </script>
 
-    <table th:substituteby="fragments/footer :: footer" class="footer">
-        <tr>
-            <td></td>
-            <td align="right">
-                <img src="../../resources/images/springsource-logo.png"
-                     th:src="@{/resources/images/springsource-logo.png}" alt="Sponsored by SpringSource"/>
-            </td>
-        </tr>
-    </table>
+    <div th:substituteby="fragments/footer :: footer" class="footer">
+
+    </div>
 
 </div>
 </body>

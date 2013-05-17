@@ -1,15 +1,16 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-transitional-thymeleaf-spring3-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org/"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="http://www.thymeleaf.org/">
 
-<head th:fragment="headTag">
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
-    <!--<title>@TODOShare: a Spring MVC/Spring data exmaple application</title>-->
+<head th:substituteby="fragments/headTag :: headTag">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
 
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
         th:href="@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
-
+    <link href="../../resources/css/petclinic.css"
+        th:href="@{/resources/css/petclinic.css}" rel="stylesheet"/>
+    
     <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
         th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
@@ -17,14 +18,25 @@
     
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
         th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}" rel="stylesheet"></link>
-    
 </head>
 
 <body>
+<div class="container">
+
+    <div th:include="fragments/bodyHeader" th:remove="tag">
+    
+    </div>
+
+    <h2>Something happened...</h2>
+
+    <p th:text="${exception.message}">The exception message...</p>
+
+
+    <div th:substituteby="fragments/footer :: footer" class="footer">
+    </div>
+
+
+</div>
 </body>
 
 </html>
-
-
-
-

@@ -77,10 +77,7 @@ public class ToDoList extends BaseEntity {
     public int hashCode() {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
-                .append(this.title)
-                .append(this.owner)
-                .append(this.members)
-                .append(this.list).toHashCode();
+                .append(this.title).toHashCode();
     }
 
     @Override
@@ -94,19 +91,13 @@ public class ToDoList extends BaseEntity {
         final ToDoList other = (ToDoList) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(this.title, other.title)
-                .append(this.owner, other.owner)
-                .append(this.members, other.members)
-                .append(this.list, other.list).isEquals();
+                .append(this.title, other.title).isEquals();
     }
 
     @Override
     public String toString() {
         return new ToStringCreator(this)
                 .append("id", this.getId())
-                .append("title", this.title)
-                .append("owner", this.owner)
-                .append("members", this.members)
-                .append("list", this.list).toString();
+                .append("title", this.title).toString();
     }
 }

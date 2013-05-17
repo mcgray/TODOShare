@@ -14,7 +14,13 @@
 
 
 /** Base Body Styles **/
-body{ background: url(../images/body-bg.png); color:#838383; font: 13px/1.7em 'Open Sans';}
+body{
+    /*
+    background: url(../images/body-bg.png);
+    color:#838383;
+    font: 13px/1.7em 'Open Sans';
+    */
+    }
 
 
 .account-container {
@@ -50,9 +56,12 @@ body{ background: url(../images/body-bg.png); color:#838383; font: 13px/1.7em 'O
 }
 
 .login-fields input {
-	font-family: 'Open Sans';
+	/*
+    font-family: 'Open Sans';
 	font-size: 13px;
-	color: #8e8d8d;
+	*/
+
+    color: #8e8d8d;
 	padding: 11px 15px 10px 50px;
 	background-color: #fdfdfd;
 	width: 255px;
@@ -190,7 +199,9 @@ span.login-checkbox > input[type='checkbox']:checked + label {
 .button {-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; display: inline-block; margin-top: 18px;}
 
 .login-actions {
+    /*
     text-align: right;
+    */
 }
 
 

@@ -125,9 +125,7 @@ public class User extends BaseEntity implements UserDetails {
                 .appendSuper(super.hashCode())
                 .append(this.emailAddress)
                 .append(this.password)
-                .append(this.toDoShareAccount)
-                .append(this.active)
-                .append(this.authorities).toHashCode();
+                .append(this.active).toHashCode();
     }
 
     @Override
@@ -143,9 +141,7 @@ public class User extends BaseEntity implements UserDetails {
                 .appendSuper(super.equals(obj))
                 .append(this.emailAddress, other.emailAddress)
                 .append(this.password, other.password)
-                .append(this.toDoShareAccount, other.toDoShareAccount)
-                .append(this.active, other.active)
-                .append(this.authorities, other.authorities).isEquals();
+                .append(this.active, other.active).isEquals();
     }
 
     @Override
@@ -154,8 +150,6 @@ public class User extends BaseEntity implements UserDetails {
                 .append("id", this.getId())
                 .append("emailAddress", this.emailAddress)
                 .append("password", this.password)
-                .append("toDoShareAccount", this.toDoShareAccount)
-                .append("active", this.active)
-                .append("authorities", this.authorities).toString();
+                .append("active", this.active).toString();
     }
 }

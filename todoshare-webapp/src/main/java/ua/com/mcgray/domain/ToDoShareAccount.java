@@ -94,11 +94,7 @@ public class ToDoShareAccount extends BaseEntity {
                 .appendSuper(super.hashCode())
                 .append(this.nickname)
                 .append(this.firstName)
-                .append(this.lastName)
-                .append(this.user)
-                .append(this.toDos)
-                .append(this.toDoLists)
-                .append(this.lists).toHashCode();
+                .append(this.lastName).toHashCode();
     }
 
     @Override
@@ -114,11 +110,7 @@ public class ToDoShareAccount extends BaseEntity {
                 .appendSuper(super.equals(obj))
                 .append(this.nickname, other.nickname)
                 .append(this.firstName, other.firstName)
-                .append(this.lastName, other.lastName)
-                .append(this.user, other.user)
-                .append(this.toDos, other.toDos)
-                .append(this.toDoLists, other.toDoLists)
-                .append(this.lists, other.lists).isEquals();
+                .append(this.lastName, other.lastName).isEquals();
     }
 
     @Override
@@ -127,10 +119,6 @@ public class ToDoShareAccount extends BaseEntity {
                 .append("id", this.getId())
                 .append("nickname",  this.nickname)
                 .append("firstName",  this.firstName)
-                .append("lastName",  this.lastName)
-                .append("user",  this.user)
-                .append("toDos",  this.toDos)
-                .append("toDoLists",  this.toDoLists)
-                .append("lists",  this.lists).toString();
+                .append("lastName",  this.lastName).toString();
     }
 }
