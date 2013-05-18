@@ -3,7 +3,7 @@ package ua.com.mcgray.web;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,7 +34,9 @@ public class ToDoController {
 
     @RequestMapping(value = "/todo/list", method = RequestMethod.GET, produces = "text/html")
     public String list(Model model) {
-        model.addAttribute("todoList", toDoService.getToDos());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("todoList", toDoService.getToDos(user.getToDoShareAccount()));
+        model.addAttribute("toDoForm", new ToDoForm());
         return "todo-list";
     }
 
@@ -44,9 +46,23 @@ public class ToDoController {
         return "todo-edit";
     }
 
-    @RequestMapping(value = { "/todo/{toDoId}", "/todo"}, method = { RequestMethod.POST, RequestMethod.PUT}, produces = "text/html")
-    public String save(@Valid ToDoForm toDoForm, BindingResult bindingResult, ModelMap model, RedirectAttributes redirectAttributes, Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
+    @RequestMapping(value = "/todo/{toDoId}", method = RequestMethod.PUT, produces = "text/html")
+    public String update(@Valid ToDoForm toDoForm, BindingResult bindingResult, ModelMap model, RedirectAttributes redirectAttributes) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("statusMessage", "Error!!");
+            return "todo-edit";
+        } else {
+            toDoForm.setOwnerId(user.getToDoShareAccount().getId());
+            Long toDoId = toDoService.saveOrUpdateToDo(toDoForm);
+            redirectAttributes.addFlashAttribute("statusMessage", "Success!!");
+            return "redirect:/todo/" + toDoId;
+        }
+    }
+
+    @RequestMapping(value = "/todo/", method = RequestMethod.POST, produces = "text/html")
+    public String save(@Valid ToDoForm toDoForm, BindingResult bindingResult, ModelMap model, RedirectAttributes redirectAttributes) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (bindingResult.hasErrors()) {
             model.addAttribute("statusMessage", "Error!!");
             return "todo-edit";

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import ua.com.mcgray.domain.ToDo;
+import ua.com.mcgray.domain.ToDoShareAccount;
 import ua.com.mcgray.dto.ToDoForm;
 import ua.com.mcgray.repository.ToDoRepository;
 import ua.com.mcgray.repository.ToDoShareAccountRepository;
@@ -24,9 +25,9 @@ public class ToDoService {
     @Resource
     private ToDoShareAccountRepository toDoShareAccountRepository;
 
-    public List<ToDoForm> getToDos() {
+    public List<ToDoForm> getToDos(ToDoShareAccount toDoShareAccount) {
         List<ToDoForm> toDoForms = new ArrayList<ToDoForm>();
-        for (ToDo toDo : toDoRepository.findAll()) {
+        for (ToDo toDo : toDoRepository.findByCreatedBy(toDoShareAccount)) {
 			toDoForms.add(new ToDoForm(toDo));
 		}
         return toDoForms;

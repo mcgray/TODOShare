@@ -17,9 +17,33 @@
     </div>
 
     <div>
+        <form th:object="${toDoForm}" method="post" th:action="@{/todo/}"
+              th:method="${toDoForm['new']} ? 'post' : 'put'" class="form-horizontal">
+            <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{note}"/>
+            <input type="hidden" th:field="*{dueDate}"/>
+            <div class="control-group" th:classappend="${#fields.hasErrors('title')} ? 'error' : ''">
+                <label class="control-label" th:for="*{title}" th:text="#{todo.title}">Title</label>
+                <div class="controls">
+                    <input type="text" th:field="*{title}" />
+                    <span class="help-inline" th:errors="*{title}">[error]</span>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary btn-large" th:if="${toDoForm['new']}" type="submit">Save</button>
+                <button class="btn btn-primary btn-large" th:unless="${toDoForm['new']}" type="submit">Update</button>
+            </div>
+        </form>
+
+    </div>
+    <div>
         <h5>ToDo List</h5>
         <ul th:each="todo : ${todoList}">
-                <li th:text="${todo.title}">ToDo title text</li>
+                <li>
+                    <em th:text="${todo.title}">ToDo title text</em>
+                    <a href="/todo/edit" th:href="@{/todo/}  + ${todo.id}">Edit</a>
+                </li>
+
         </ul>
     </div>
 

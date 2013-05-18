@@ -25,12 +25,15 @@
     </div>
 
     <div>
+        <div>
+            <a href="" th:href="@{/todo/list}">Back to list</a>
+        </div>
         <h5>ToDo Edit</h5>
         <form th:object="${toDoForm}" method="post" th:action="'#'" action="#"
               th:method="${toDoForm['new']} ? 'post' : 'put'" class="form-horizontal">
             <input type="hidden" th:field="*{id}" />
             <div class="control-group" th:classappend="${#fields.hasErrors('title')} ? 'error' : ''">
-                <label class="control-label" th:for="*{title}" th:text="#{todo.title}">Title</label>
+                <label class="control-label" th:for="*{title}" th:text="*">Title</label>
                 <div class="controls">
                     <input type="text" th:field="*{title}" />
                     <span class="help-inline" th:errors="*{title}">[error]</span>
