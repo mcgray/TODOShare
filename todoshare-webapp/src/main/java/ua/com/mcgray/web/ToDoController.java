@@ -3,6 +3,7 @@ package ua.com.mcgray.web;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,8 +34,8 @@ public class ToDoController {
     }
 
     @RequestMapping(value = "/todo/list", method = RequestMethod.GET, produces = "text/html")
-    public String list(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String list(Model model, Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
         model.addAttribute("todoList", toDoService.getToDos(user.getToDoShareAccount()));
         model.addAttribute("toDoForm", new ToDoForm());
         return "todo-list";
@@ -47,8 +48,8 @@ public class ToDoController {
     }
 
     @RequestMapping(value = "/todo/{toDoId}", method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid ToDoForm toDoForm, BindingResult bindingResult, ModelMap model, RedirectAttributes redirectAttributes) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String update(@Valid ToDoForm toDoForm, BindingResult bindingResult, Authentication authentication, ModelMap model, RedirectAttributes redirectAttributes) {
+        User user = (User) authentication.getPrincipal();
         if (bindingResult.hasErrors()) {
             model.addAttribute("statusMessage", "Error!!");
             return "todo-edit";

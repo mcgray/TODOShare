@@ -39,8 +39,12 @@ public class ToDoForm {
 
     public ToDoForm(final ToDo toDo) {
         this.id = toDo.getId();
-        this.ownerId = toDo.getCreatedBy().getId();
-        this.listId = toDo.getList().getId();
+        if (toDo.getCreatedBy() != null) {
+            this.ownerId = toDo.getCreatedBy().getId();
+        }
+        if (toDo.getList() != null) {
+            this.listId = toDo.getList().getId();
+        }
         this.done = toDo.isDone();
         this.dueDate = toDo.getDueDate();
         this.title = toDo.getTitle();

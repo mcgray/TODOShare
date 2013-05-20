@@ -18,13 +18,13 @@
 
     <beans profile="mocks">
         <bean id="toDoService" class="org.mockito.Mockito" factory-method="mock" >
-            <constructor-arg value="ua.com.mcgray.service.ToDoService" />
+            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.service.ToDoService" />
         </bean>
         <bean id="toDoRepository" class="org.mockito.Mockito" factory-method="mock" >
-            <constructor-arg value="ua.com.mcgray.repository.ToDoRepository" />
+            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.repository.ToDoRepository" />
         </bean>
         <bean id="toDoShareAccountRepository" class="org.mockito.Mockito" factory-method="mock" >
-            <constructor-arg value="ua.com.mcgray.repository.ToDoShareAccountRepository" />
+            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.repository.ToDoShareAccountRepository" />
         </bean>
     </beans>
 

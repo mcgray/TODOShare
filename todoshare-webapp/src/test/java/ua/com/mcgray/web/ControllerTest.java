@@ -3,7 +3,6 @@ package ua.com.mcgray.web;
 import javax.annotation.Resource;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +63,14 @@ public class ControllerTest {
     }
 
     //TODO: Fix this test
-    @Ignore
     @Test
     public void testToDoEdit() throws Exception {
         when(toDoRepository.findOne(12L)).thenReturn(new ToDo());
-        mockMvc.perform(get("/todo/12").param("id","12").param("title", "Some title"))
+        mockMvc.perform(get("/todo/12")
+                .param("id","12")
+                .param("title", "Some title")
+                .param("note","Some note")
+                .param("dueDate", "20-05-2013"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("todo-edit"));
         verify(toDoRepository).findOne(12L);

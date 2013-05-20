@@ -18,7 +18,7 @@
 
     <div>
         <form th:object="${toDoForm}" method="post" th:action="@{/todo/}"
-              th:method="${toDoForm['new']} ? 'post' : 'put'" class="form-horizontal">
+              th:method="${toDoForm['new']} ? 'post' : 'put'" class="form-horizontal" action="">
             <input type="hidden" th:field="*{id}" />
             <input type="hidden" th:field="*{note}"/>
             <input type="hidden" th:field="*{dueDate}"/>
@@ -40,8 +40,9 @@
         <h5>ToDo List</h5>
         <ul th:each="todo : ${todoList}">
                 <li>
-                    <em th:text="${todo.title}">ToDo title text</em>
-                    <a href="/todo/edit" th:href="@{/todo/}  + ${todo.id}">Edit</a>
+                    <em th:text="${todo.title}">ToDo title text</em> |
+                    <a href="/todo/edit" th:href="@{/todo/}  + ${todo.id}">Edit</a> |
+                    <a href="/todo/delete" th:href="@{/todo/}  + ${todo.id}">Delete</a>
                 </li>
 
         </ul>

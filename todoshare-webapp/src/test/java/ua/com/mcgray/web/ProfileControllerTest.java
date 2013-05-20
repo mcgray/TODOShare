@@ -1,13 +1,13 @@
 package ua.com.mcgray.web;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,13 +26,12 @@ public class ProfileControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(profileController).build();
+        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+        internalResourceViewResolver.setSuffix(".html");
+        mockMvc = MockMvcBuilders.standaloneSetup(profileController).setViewResolvers(internalResourceViewResolver).build();
 
     }
 
-    //Ignored because of strange error probably caused by naming of the view (same as request mapping)
-    //TODO: Check if this a bug/known bug or incorrect test
-    @Ignore
     @Test
     public void testShowProfile() throws Exception {
         mockMvc.perform(get("/profile"))
