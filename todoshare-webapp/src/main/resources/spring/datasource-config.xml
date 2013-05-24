@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Application context definition for PetClinic Datasource.
--->
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:solr="http://www.springframework.org/schema/data/solr"
+       xmlns:aop="http://www.springframework.org/schema/aop"
 
        xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -18,11 +17,15 @@
          http://www.springframework.org/schema/tx
          http://www.springframework.org/schema/tx/spring-tx.xsd
          http://www.springframework.org/schema/data/jpa
-         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+         http://www.springframework.org/schema/data/solr
+         http://www.springframework.org/schema/data/solr/spring-solr.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!-- ========================= DATASOURCE DEFINITION ========================= -->
-
-    <!-- ========================= RESOURCE DEFINITIONS ========================= -->
+    <aop:aspectj-autoproxy />
+    
+    <context:component-scan base-package="ua.com.mcgray.aspect" />
 
     <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
     <!-- (in this case, JDBC-related settings for the JPA EntityManager definition below) -->
@@ -49,7 +52,7 @@
         </property>
     </bean>
 
-    <jpa:repositories base-package="ua.com.mcgray.repository"/>
+    <jpa:repositories base-package="ua.com.mcgray.repository.jpa"/>
 
     <!-- JPA EntityManagerFactory -->
     <bean id="entityManagerFactory"
@@ -80,5 +83,13 @@
         exceptions such as JPA PersistenceExceptions to Spring's DataAccessException hierarchy).
     -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <solr:repositories base-package="ua.com.mcgray.repository.solr" />
+
+    <solr:solr-server id="solrServer" url="${solr.serverUrl}"/>
+
+    <bean id="solrTemplate" class="org.springframework.data.solr.core.SolrTemplate">
+        <constructor-arg ref="solrServer"/>
+    </bean>
 
 </beans>

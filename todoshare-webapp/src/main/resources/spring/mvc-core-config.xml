@@ -28,9 +28,10 @@
     <mvc:default-servlet-handler />
 
     <mvc:annotation-driven conversion-service="conversionService">
-        <!--<mvc:argument-resolvers>-->
-            <!--<bean></bean>-->
-        <!--</mvc:argument-resolvers>-->
+        <mvc:argument-resolvers>
+            <bean class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
+            <bean class="org.springframework.data.web.SortHandlerMethodArgumentResolver" />
+        </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be refered to inside JSP files

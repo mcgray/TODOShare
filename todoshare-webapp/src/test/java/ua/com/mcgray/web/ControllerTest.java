@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ua.com.mcgray.domain.ToDo;
-import ua.com.mcgray.repository.ToDoRepository;
+import ua.com.mcgray.repository.jpa.ToDoRepository;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

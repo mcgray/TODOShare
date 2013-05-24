@@ -27,13 +27,30 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li style="width: 100px;"><a href="../welcome.html" th:href="@{/}"><i class="icon-home"></i>Home</a></li>
+            <li style="width: 100px;"><a href="/dashboard" th:href="@{/}"><i class="icon-home"></i>Home</a></li>
             <!--<li style="width: 130px;"><a href="../owners/findOwners.html" th:href="@{/owners/find.html}"><i class="icon-search"></i>Find owners</a></li>-->
-            <!--<li style="width: 140px;"><a href="../vets/vetList.html" th:href="@{/vets.html}"><i class="icon-th-list"></i>Veterinarians</a></li>-->
+            <li style="width: 140px;"><a href="/todo/list" th:href="@{/todo/list}"><i class="icon-th-list"></i>ToDo List</a></li>
             <!--<li style="width: 90px;"><a href="../exception.html" th:href="@{/oups.html}" title="trigger a RuntimeException to see how it is handled"><i class="icon-warning-sign"></i>Error</a></li>-->
-            <!--<li style="width: 80px;"><a href="#" title="not available yet. Work in progress!!"><i class=" icon-question-sign"></i>Help</a></li>-->
+            <li style="width: 80px;"><a href="/credits" th:href="@{/credits}" title="not available yet. Work in progress!!"><i class=" icon-question-sign"></i>Credits</a></li>
         </ul>
     </div>
+    <div th:if="${not #strings.isEmpty(successMessage)}" class="alert alert-success alert-global">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong th:text="${successMessage}">success message</strong>
+    </div>
+    <div th:if="${not #strings.isEmpty(statusMessage)}" class="alert alert-info alert-global">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong th:text="${statusMessage}">info message</strong>
+    </div>
+    <div th:if="${not #strings.isEmpty(errorMessage)}" class="alert alert-error alert-global">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong th:text="${errorMessage}">error message</strong>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(".alert").alert();
+        //]]>
+    </script>
 </div>
 	
 </body>

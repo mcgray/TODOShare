@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 
+import com.mysema.query.types.Predicate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import ua.com.mcgray.domain.ToDo;
 import ua.com.mcgray.domain.ToDoShareAccount;
 import ua.com.mcgray.dto.ToDoForm;
-import ua.com.mcgray.repository.ToDoRepository;
-import ua.com.mcgray.repository.ToDoShareAccountRepository;
+import ua.com.mcgray.repository.jpa.ToDoRepository;
+import ua.com.mcgray.repository.jpa.ToDoShareAccountRepository;
 
 /**
  * @author orezchykov
@@ -55,5 +58,17 @@ public class ToDoServiceImpl implements ToDoService {
         toDo.setDueDate(toDoForm.getDueDate());
         toDoRepository.save(toDo);
         return toDo.getId();
+    }
+
+    @Override
+    @PreAuthorize("#toDoForm.ownerId == authentication.principal.toDoShareAccount.id")
+    public void delete(final ToDoForm toDoForm) {
+        toDoRepository.delete(toDoForm.getId());
+    }
+
+    @Override
+    public Page<ToDo> findAll(final Predicate predicate, final Pageable pageable) {
+        return toDoRepository.findAll(predicate, pageable);
+
     }
 }

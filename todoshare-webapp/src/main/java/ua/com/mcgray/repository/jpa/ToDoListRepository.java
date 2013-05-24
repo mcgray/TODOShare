@@ -1,4 +1,4 @@
-package ua.com.mcgray.repository;
+package ua.com.mcgray.repository.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ua.com.mcgray.domain.ToDoList;

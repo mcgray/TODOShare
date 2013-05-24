@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.core.convert.converter.Converter;
 import ua.com.mcgray.dto.ToDoForm;
-import ua.com.mcgray.repository.ToDoRepository;
+import ua.com.mcgray.repository.jpa.ToDoRepository;
 
 /**
  * @author orezchykov

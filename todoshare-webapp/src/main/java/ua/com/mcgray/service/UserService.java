@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.mcgray.domain.User;
-import ua.com.mcgray.repository.UserRepository;
+import ua.com.mcgray.repository.jpa.UserRepository;
 
 /**
  * @author orezchykov

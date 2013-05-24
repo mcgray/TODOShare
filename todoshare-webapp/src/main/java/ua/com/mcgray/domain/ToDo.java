@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.annotations.Type;
@@ -24,11 +25,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "todo")
 public class ToDo extends BaseEntity {
 
+    @JsonIgnore
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "todoshare_account_id", nullable = false)
     private ToDoShareAccount createdBy;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "todolist_id")
     private ToDoList list;

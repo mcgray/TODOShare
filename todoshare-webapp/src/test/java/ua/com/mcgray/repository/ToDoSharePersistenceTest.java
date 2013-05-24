@@ -13,6 +13,10 @@ import ua.com.mcgray.domain.ToDo;
 import ua.com.mcgray.domain.ToDoList;
 import ua.com.mcgray.domain.ToDoShareAccount;
 import ua.com.mcgray.domain.User;
+import ua.com.mcgray.repository.jpa.ToDoListRepository;
+import ua.com.mcgray.repository.jpa.ToDoRepository;
+import ua.com.mcgray.repository.jpa.ToDoShareAccountRepository;
+import ua.com.mcgray.repository.jpa.UserRepository;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;

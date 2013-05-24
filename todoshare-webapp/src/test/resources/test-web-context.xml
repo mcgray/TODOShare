@@ -20,11 +20,17 @@
         <bean id="toDoService" class="org.mockito.Mockito" factory-method="mock" >
             <constructor-arg type="java.lang.Class" value="ua.com.mcgray.service.ToDoService" />
         </bean>
+        <bean id="toDoDocumentService" class="org.mockito.Mockito" factory-method="mock" >
+            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.service.ToDoDocumentService" />
+        </bean>
         <bean id="toDoRepository" class="org.mockito.Mockito" factory-method="mock" >
-            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.repository.ToDoRepository" />
+            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.repository.jpa.ToDoRepository" />
         </bean>
         <bean id="toDoShareAccountRepository" class="org.mockito.Mockito" factory-method="mock" >
-            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.repository.ToDoShareAccountRepository" />
+            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.repository.jpa.ToDoShareAccountRepository" />
+        </bean>
+        <bean id="toDoDocumentRepository" class="org.mockito.Mockito" factory-method="mock" >
+            <constructor-arg type="java.lang.Class" value="ua.com.mcgray.repository.solr.ToDoDocumentRepository" />
         </bean>
     </beans>
 

@@ -2,11 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org/">
 
-<head th:include="fragments/headTag :: headTag">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>@TODOShare: a Spring MVC/Spring data exmaple application</title>
 
     <script th:include="fragments/headTag :: headTag"  th:remove="tag" type="text/javascript"></script>
+
+    <link href=""
+          th:href="@{/webjars/datatables-bootstrap/2-20120201/DT_bootstrap.css}" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://www.datatables.net/download/build/jquery.dataTables.min.js"
+            th:src="@{/webjars/datatables/1.9.4/media/js/jquery.dataTables.min.js}" ></script>
+
+    <script type="text/javascript" src=""
+            th:src="@{/webjars/datatables-bootstrap/2-20120201/DT_bootstrap.js}" ></script>
+
+    <script type="text/javascript" src="https://raw.github.com/nikgraf/jquery-global/master/jquery.global.js"></script>
 
 </head>
 
@@ -36,13 +47,118 @@
         </form>
 
     </div>
+    <table id="toDoList" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody/>
+    </table>
+
+    <script type="text/javascript" th:inline="javascript" charset="utf-8">
+        //<![CDATA[
+
+        var dataUrl = /*[[@{/todo/listdata}]]*/ '/todo/listdata';
+
+        $.extend( $.fn.dataTableExt.oStdClasses, {
+            "sSortAsc": "header headerSortDown",
+            "sSortDesc": "header headerSortUp",
+            "sSortable": "header"
+        } );
+
+        var datatable2Rest = function(sSource, aoData, fnCallback) {
+
+            //extract name/value pairs into a simpler map for use later
+            var paramMap = {};
+            for ( var i = 0; i < aoData.length; i++) {
+                paramMap[aoData[i].name] = aoData[i].value;
+            }
+
+            //page calculations
+            var pageSize = paramMap.iDisplayLength;
+            var start = paramMap.iDisplayStart;
+            var pageNum = (start == 0) ? 0 : (start / pageSize); // pageNum is 1 based
+
+            // extract sort information
+            var sortCol = paramMap.iSortCol_0;
+            var sortDir = paramMap.sSortDir_0;
+            var sortName = paramMap['mDataProp_' + sortCol];
+
+            //create new json structure for parameters for REST request
+            var restParams = new Array();
+            restParams.push({"name" : "size", "value" : pageSize});
+            restParams.push({"name" : "page", "value" : pageNum });
+            restParams.push({"name" : "sort", "value" : sortName + "," + sortDir });
+//            restParams.push({"name" : sortName + ".dir", "value" : sortDir });
+
+            //if we are searching by name, override the url and add the name parameter
+            var url = sSource;
+//            if (paramMap.sSearch != '') {
+//                url = "${baseUrl}rest/customer/search/findByNameContains";
+//                restParams.push({ "name" : "name", "value" :  paramMap.sSearch});
+//            }
+
+            //finally, make the request
+            $.ajax({
+                "dataType" : 'json',
+                "type" : "GET",
+                "url" : url,
+                "data" : restParams,
+                "success" : function(data) {
+                    data.iTotalRecords = data.totalElements;
+                    data.iTotalDisplayRecords = data.numberOfElements;
+
+                    fnCallback(data);
+                }
+            });
+        };
+
+        var dataTableDateFormatter = {"sDefaultContent":"","mRender": function ( data, type, full ) {
+            if (full && full['dueDate']!=null) {
+                var d = new Date(full['dueDate']['millis']);
+                return jQuery.global.format(d, "d")+" "+jQuery.global.format(d, "t");
+            }
+            return "";
+        }};
+
+        $('#toDoList').dataTable({
+            "sAjaxSource" : dataUrl,
+            "sAjaxDataProp" : 'content',
+            "aoColumns" : [ {
+                mDataProp : 'title'
+            },
+                dataTableDateFormatter
+            , {
+                "mRender" : function (data, type, full){
+                   var contextPath = /*[[@{/todo/}]]*/ '';
+                   var url  = contextPath + full['id'];
+                   var editButton = '<a class="btn" href="' + url + '" >Edit</a>';
+                   var deleteButton = '<form method="delete" action="'  + url + '" style="display: inline;"><button class="btn" type="submit">Delete</button></form>';
+                   return editButton + deleteButton;
+                }
+            } ],
+            "bServerSide" : true,
+            "bJQueryUI":true,
+            "sDom":"<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
+            "sPaginationType":"bootstrap",
+            "fnServerData" : datatable2Rest
+        });
+        //]]>
+    </script>
+
+
     <div>
         <h5>ToDo List</h5>
         <ul th:each="todo : ${todoList}">
                 <li>
-                    <em th:text="${todo.title}">ToDo title text</em> |
-                    <a href="/todo/edit" th:href="@{/todo/}  + ${todo.id}">Edit</a> |
-                    <a href="/todo/delete" th:href="@{/todo/}  + ${todo.id}">Delete</a>
+                    <em th:text="${todo.title}">ToDo title text</em>
+                    <a class="btn" href="/todo/edit" th:href="@{/todo/}  + ${todo.id}">Edit</a>
+                    <form method="post" th:method="'delete'" th:action="@{/todo/}  + ${todo.id}" action="" style="display: inline;">
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
                 </li>
 
         </ul>
