@@ -1,0 +1,51 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-transitional-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>@TODOShare: a Spring MVC/Spring data exmaple application</title>
+
+    <script th:include="fragments/headTag :: headTag"  th:remove="tag" type="text/javascript"></script>
+
+    <link href=""
+          th:href="@{/webjars/datatables-bootstrap/2-20120201/DT_bootstrap.css}" rel="stylesheet"/>
+
+    <script type="text/javascript" src="http://www.datatables.net/download/build/jquery.dataTables.min.js"
+            th:src="@{/webjars/datatables/1.9.4/media/js/jquery.dataTables.min.js}" ></script>
+
+    <script type="text/javascript" src=""
+            th:src="@{/webjars/datatables-bootstrap/2-20120201/DT_bootstrap.js}" ></script>
+
+    <script type="text/javascript" src="https://raw.github.com/nikgraf/jquery-global/master/jquery.global.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+
+    <div th:include="fragments/bodyHeader :: bodyHeader" th:remove="tag">
+    </div>
+
+    <div>
+        <h5>ToDo List</h5>
+        <ul th:each="todo : ${documentList}">
+                <li>
+                    <em th:text="${todo.title}">ToDo title text</em>
+                    <a class="btn" href="/todo/edit" th:href="@{/todo/}  + ${todo.originalId}">Edit</a>
+                    <form method="post" th:method="'delete'" th:action="@{/todo/}  + ${todo.originalId}" action="" style="display: inline;">
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
+                </li>
+
+        </ul>
+    </div>
+
+    <div th:substituteby="fragments/footer :: footer" class="footer">
+
+    </div>
+
+</div>
+</body>
+
+</html>

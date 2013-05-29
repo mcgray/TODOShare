@@ -31,7 +31,8 @@
             <!--<li style="width: 130px;"><a href="../owners/findOwners.html" th:href="@{/owners/find.html}"><i class="icon-search"></i>Find owners</a></li>-->
             <li style="width: 140px;"><a href="/todo/list" th:href="@{/todo/list}"><i class="icon-th-list"></i>ToDo List</a></li>
             <!--<li style="width: 90px;"><a href="../exception.html" th:href="@{/oups.html}" title="trigger a RuntimeException to see how it is handled"><i class="icon-warning-sign"></i>Error</a></li>-->
-            <li style="width: 80px;"><a href="/credits" th:href="@{/credits}" title="not available yet. Work in progress!!"><i class=" icon-question-sign"></i>Credits</a></li>
+            <li style="width: 100px;"><a href="/credits" th:href="@{/credits}" title="not available yet. Work in progress!!"><i class=" icon-question-sign"></i>Credits</a></li>
+            <li><form class="navbar-form pull-right" action="" method="get" th:action="@{/searchPage}" ><input class="span2" type="text" id="q" name="q" placheholder="search string" /><button class="btn" type="submit">Search</button></form></li>
         </ul>
     </div>
     <div th:if="${not #strings.isEmpty(successMessage)}" class="alert alert-success alert-global">

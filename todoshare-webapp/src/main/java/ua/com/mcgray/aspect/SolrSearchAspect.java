@@ -18,7 +18,8 @@ public class SolrSearchAspect {
     @Autowired
     private ToDoDocumentService toDoDocumentService;
 
-    @After(value = "(execution(* ua.com.mcgray.repository.jpa.ToDoRepository.save(..)))" +
+    @After(value = "(execution(* ua.com.mcgray.repository.jpa" +
+            ".ToDoRepository.save(..)))" +
             "&& args(entity, ..)")
     public void updateIndex(ToDo entity) {
         toDoDocumentService.save(entity);
