@@ -200,9 +200,7 @@
                 "data" : restParams,
                 "success" : function(data) {
                     data.iTotalRecords = data.totalElements;
-                    data.iTotalDisplayRecords = data.numberOfElements;
-                    data._iDisplayStart = data.numberOfElements;
-                    data._iDisplayLength = data.numberOfElements;
+                    data.iTotalDisplayRecords = data.totalElements;
 
                     fnCallback(data);
                 }
