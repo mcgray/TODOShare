@@ -48,7 +48,7 @@ public class ToDoController {
         return toDoService.findAll(predicate, pageable);
     }
 
-    private static Predicate constructPredicate(ToDoShareAccount toDoShareAccount) {
+    public static Predicate constructPredicate(ToDoShareAccount toDoShareAccount) {
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         booleanBuilder.and(QToDo.toDo.createdBy.eq(toDoShareAccount));
         return booleanBuilder;
