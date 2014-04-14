@@ -209,7 +209,6 @@
         };
 
         $('#toDoList').dataTable({
-            "bServerSide":false,
             "sDom":"<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
             "sAjaxSource" : dataUrl,
             "sAjaxDataProp" : 'content',
@@ -224,7 +223,7 @@
                     return "";
                 }}
             , {
-               "bSortable" : false, "mRender" : function (data, type, full){
+               "mDataProp" : "id", "bSortable" : false, "mRender" : function (data, type, full){
                    var contextPath = /*[[@{/todo/}]]*/ '';
                    var url  = contextPath + full['id'];
                    var editButton = '<a class="btn" href="' + url + '" >Edit</a>';
