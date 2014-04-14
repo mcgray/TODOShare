@@ -227,7 +227,10 @@
                    var contextPath = /*[[@{/todo/}]]*/ '';
                    var url  = contextPath + full['id'];
                    var editButton = '<a class="btn" href="' + url + '" >Edit</a>';
-                   var deleteButton = '<form method="delete" action="'  + url + '" style="display: inline;"><button class="btn" type="submit">Delete</button></form>';
+                   var deleteButton = '<form method="post" action="'  + url + '" style="display: inline;">' +
+                           '                    <input type="hidden" name="_method" value="delete"/>' +
+                           '                    <button class="btn" type="submit">Delete</button>' +
+                           '            </form>';
                    return editButton + deleteButton;
                 }
             } ],
