@@ -69,7 +69,7 @@ public class ControllerTest {
     @Before
 	public void setUp() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
-                .alwaysExpect(status().isOk())
+//                .alwaysExpect(status().isOk())
                 .alwaysDo(print())
                 .build();
         user = new User();
@@ -137,7 +137,7 @@ public class ControllerTest {
                 .param("title", "Some title")
                 .param("note","Some note")
                 .param("dueDate", "20-05-2013"))
-                .andExpect(view().name("todo-edit"));
+                .andExpect(status().is3xxRedirection());
 
     }
 }

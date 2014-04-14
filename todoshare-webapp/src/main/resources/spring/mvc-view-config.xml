@@ -21,7 +21,7 @@
         <property name="cacheable" value="false" />
     </bean>
 
-    <bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver" />
         <property name="additionalDialects">
             <set>
@@ -48,7 +48,7 @@
                     <property name="order" value="1"/>
                 </bean>
 
-                <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+                <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
                     <property name="templateEngine" ref="templateEngine" />
                     <property name="order" value="2"/>
                     <!--                     <property name="viewNames"  -->
