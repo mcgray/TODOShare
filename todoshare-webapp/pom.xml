@@ -67,7 +67,7 @@
         <querydsl.version>3.2.4</querydsl.version>
 
 
-        <jackson-core.version>2.1.2</jackson-core.version>
+        <jackson-core.version>2.11.0</jackson-core.version>
         <webjars-datatables.version>1.9.4-1</webjars-datatables.version>
         <datatables-bootstrap.version>2-20120201-1</datatables-bootstrap.version>
         <spring-hateoas.version>0.5.0.RELEASE</spring-hateoas.version>
