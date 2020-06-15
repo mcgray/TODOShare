@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring-framework.version>4.0.3.RELEASE</spring-framework.version>
+        <spring-framework.version>5.2.7.RELEASE</spring-framework.version>
         <spring-data-jpa.version>1.5.1.RELEASE</spring-data-jpa.version>
         <spring-security.version>3.2.3.RELEASE</spring-security.version>
 
