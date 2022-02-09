@@ -29,7 +29,7 @@
         <jaxb-api.version>2.2.7</jaxb-api.version>
         <jaxb-impl.version>2.2.7-b53</jaxb-impl.version>
 
-        <hibernate.version>4.3.0.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
         <hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
         <validation.version>1.1.0.Final</validation.version>
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
